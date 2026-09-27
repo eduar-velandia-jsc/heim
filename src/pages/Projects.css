@@ -1,0 +1,10 @@
+.projects-page {
+  padding-top: 450px;
+  padding-bottom: 21px;
+}
+
+@media (max-width: 960px) {
+  .projects-page {
+    padding-top: 160px;
+  }
+}

@@ -1,0 +1,177 @@
+:root {
+  /* Colores */
+  --color-primary: #e98f0c;
+  --color-primary-soft: rgba(233, 143, 12, 0.24);
+  --color-navy: #0c233d;
+  --color-cream: #ffedd5;
+  --color-sky: #ebf3fa;
+  --color-green: #36b864;
+  --color-green-soft: rgba(54, 184, 100, 0.1);
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-muted: #666666;
+  --color-zinc-500: #71717a;
+  --color-zinc-200: #e4e4e7;
+  --color-gray-700: #344054;
+  --color-gray-600: #475467;
+  --color-gray-500: #667085;
+  --color-gray-300: #d0d5dd;
+  --color-border: #e7e7e7;
+
+  /* Tipografías */
+  --font-inter: "Inter", system-ui, sans-serif;
+  --font-vietnam: "Be Vietnam Pro", "Inter", system-ui, sans-serif;
+  --font-montserrat: "Montserrat", "Inter", system-ui, sans-serif;
+  --font-urbanist: "Urbanist", "Inter", system-ui, sans-serif;
+  --font-poppins: "Poppins", "Inter", system-ui, sans-serif;
+  --font-jakarta: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+  --font-lato: "Lato", "Inter", system-ui, sans-serif;
+  --font-worksans: "Work Sans", "Inter", system-ui, sans-serif;
+
+  /* Layout */
+  --container: 1220px;
+  --gutter: 16px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-inter);
+  color: var(--color-navy);
+  background: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+dl,
+dd {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.container {
+  width: min(var(--container), 100% - 2 * var(--gutter));
+  margin-inline: auto;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Botón naranja con flecha (Empecemos, Book Now, View All…) */
+.arrow-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 46px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-family: var(--font-vietnam);
+  font-size: 16px;
+  line-height: normal;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: filter 0.2s ease;
+}
+
+.arrow-button:hover {
+  filter: brightness(1.08);
+}
+
+.arrow-button--urbanist {
+  font-family: var(--font-urbanist);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.arrow-button img {
+  width: 20px;
+  height: 20px;
+}
+
+/* Encabezado de sección con botón a la derecha (proceso, proyectos) */
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 126px;
+}
+
+.section-heading__text {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--color-navy);
+}
+
+.section-heading__title {
+  font-size: 48px;
+  font-weight: 500;
+}
+
+.section-heading__subtitle {
+  font-size: 16px;
+}
+
+@media (max-width: 1024px) {
+  .section-heading {
+    gap: 24px;
+  }
+
+  .section-heading__title {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 720px) {
+  .section-heading {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .section-heading__title {
+    font-size: 32px;
+  }
+}

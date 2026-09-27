@@ -1,0 +1,26 @@
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: 93px;
+}
+
+.projects__subtitle {
+  font-family: var(--font-urbanist);
+}
+
+.projects__list {
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+  padding-left: 10px;
+}
+
+@media (max-width: 1024px) {
+  .projects {
+    gap: 48px;
+  }
+
+  .projects__list {
+    padding-left: 0;
+  }
+}
