@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { asset } from "../lib/asset";
 import "./Header.css";
 
 const NAV_ITEMS = [
@@ -17,7 +18,7 @@ export function Header() {
     <header className="header">
       <div className="header__inner container">
         <Link to="/" className="header__logo" aria-label="Heim, ir al inicio">
-          <img src="/assets/logos/heim-header.png" alt="Heim creando ambientes" width={215} height={76} />
+          <img src={asset("logos/heim-header.png")} alt="Heim creando ambientes" width={215} height={76} />
         </Link>
 
         <button

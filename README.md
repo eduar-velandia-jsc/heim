@@ -42,3 +42,11 @@ src/styles/        tokens y estilos globales
 ## Recursos
 
 Los recursos se exportaron como PNG/WebP renderizando cada nodo en Figma. Los íconos vectoriales quedaron en PNG a 1x. Si se necesitan SVG nítidos en pantallas retina, se pueden reemplazar en `public/assets/icons/` con el mismo nombre.
+
+## Despliegue
+
+El sitio se publica en GitHub Pages en <https://eduar-velandia-jsc.github.io/heim/>.
+
+- `vite.config.ts` usa `base: "/heim/"`; el router usa `basename={import.meta.env.BASE_URL}`.
+- Las rutas a `public/assets` pasan por `asset()` (`src/lib/asset.ts`), que antepone `import.meta.env.BASE_URL`.
+- `.github/workflows/deploy.yml` construye y despliega en cada push a `main`. Copia `dist/index.html` a `dist/404.html` para que las rutas profundas (`/heim/proyectos`) funcionen al recargar.

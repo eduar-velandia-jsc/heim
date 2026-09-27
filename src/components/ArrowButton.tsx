@@ -1,3 +1,5 @@
+import { asset } from "../lib/asset";
+
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 
@@ -12,7 +14,7 @@ export function ArrowButton({ to, children, variant = "default" }: ArrowButtonPr
   return (
     <Link to={to} className={className}>
       <span>{children}</span>
-      <img src="/assets/icons/arrow.png" alt="" width={20} height={20} />
+      <img src={asset("icons/arrow.png")} alt="" width={20} height={20} />
     </Link>
   );
 }

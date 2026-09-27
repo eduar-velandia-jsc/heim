@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { asset } from "../lib/asset";
 import "./FaqSection.css";
 
 const FAQS = [
@@ -56,7 +57,7 @@ export function FaqSection() {
                   onClick={() => setOpenIndex(open ? null : index)}
                 >
                   <span>{faq.question}</span>
-                  <img src={open ? "/assets/icons/minus.png" : "/assets/icons/plus.png"} alt="" width={24} height={24} />
+                  <img src={open ? asset("icons/minus.png") : asset("icons/plus.png")} alt="" width={24} height={24} />
                 </button>
               </h3>
               <p id={panelId} className="faq__answer" hidden={!open}>

@@ -1,3 +1,5 @@
+import { asset } from "../lib/asset";
+
 export type Project = {
   date: string;
   category: string;
@@ -14,7 +16,7 @@ export const PROJECTS: Project[] = [
     date: "01 / 07/2026",
     category: "Remodelación Residencial",
     name: "Proyecto Zajarí – Reconfiguración Arquitectura & Redes",
-    image: "/assets/images/proyecto-zajari.webp",
+    image: asset("images/proyecto-zajari.webp"),
     imageHeight: 608,
     challengeTitle: "Desafío y solución técnica",
     challenge:
@@ -29,7 +31,7 @@ export const PROJECTS: Project[] = [
     date: "17/ 04/2025",
     category: "Integración corporativa & Branding",
     name: "Fondo de Empleados Fonreginal – Redistribución & Renovación Integral",
-    image: "/assets/images/proyecto-fonreginal.webp",
+    image: asset("images/proyecto-fonreginal.webp"),
     imageHeight: 599,
     challengeTitle: "Desafío y solución técnica:",
     challenge:

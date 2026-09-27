@@ -3,12 +3,13 @@ import { ArrowButton } from "../components/ArrowButton";
 import { ContactSection } from "../components/ContactSection";
 import { ProjectsSection } from "../components/ProjectsSection";
 import { SERVICES } from "../data/services";
+import { asset } from "../lib/asset";
 import "./Home.css";
 
 const HERO_FEATURES = [
-  { icon: "/assets/icons/clock.png", label: "Respuesta ágil" },
-  { icon: "/assets/icons/award.png", label: "Ejecución integral" },
-  { icon: "/assets/icons/customer-service.png", label: "Atención personalizada" },
+  { icon: asset("icons/clock.png"), label: "Respuesta ágil" },
+  { icon: asset("icons/award.png"), label: "Ejecución integral" },
+  { icon: asset("icons/customer-service.png"), label: "Atención personalizada" },
 ];
 
 const STATS = [
@@ -19,17 +20,17 @@ const STATS = [
 
 const REASONS = [
   {
-    icon: "/assets/icons/check-1.png",
+    icon: asset("icons/check-1.png"),
     title: "Un solo interlocutor",
     text: "Centralizamos diseño, ejecución, tecnología y mantenimiento bajo una misma administración y garantía.",
   },
   {
-    icon: "/assets/icons/check-2.png",
+    icon: asset("icons/check-2.png"),
     title: "Eficiencia y tiempos",
     text: "Planificación integrada que elimina reprocesos, optimiza presupuestos y cumple las entregas a tiempo.",
   },
   {
-    icon: "/assets/icons/check-3.png",
+    icon: asset("icons/check-3.png"),
     title: "Respaldo técnico",
     text: "Supervisión rigurosa, mano de obra cualificada y acabados de alta gama para asegurar máxima durabilidad..",
   },
@@ -52,20 +53,20 @@ const PROCESS_STEPS = [
 ];
 
 const CLIENTS = [
-  { name: "Grupo Empresarial Kinku", logo: "/assets/logos/kinku.png", width: 211, height: 74 },
-  { name: "The Houzzz", logo: "/assets/logos/thehouzzz.png", width: 97, height: 73 },
-  { name: "Sylvania", logo: "/assets/logos/sylvania.png", width: 269, height: 74 },
-  { name: "Gilat", logo: "/assets/logos/gilat.png", width: 169, height: 78 },
-  { name: "Fonreginal", logo: "/assets/logos/fonreginal.png", width: 249, height: 92 },
-  { name: "Click Centro Gráfico", logo: "/assets/logos/click.png", width: 99, height: 81 },
+  { name: "Grupo Empresarial Kinku", logo: asset("logos/kinku.png"), width: 211, height: 74 },
+  { name: "The Houzzz", logo: asset("logos/thehouzzz.png"), width: 97, height: 73 },
+  { name: "Sylvania", logo: asset("logos/sylvania.png"), width: 269, height: 74 },
+  { name: "Gilat", logo: asset("logos/gilat.png"), width: 169, height: 78 },
+  { name: "Fonreginal", logo: asset("logos/fonreginal.png"), width: 249, height: 92 },
+  { name: "Click Centro Gráfico", logo: asset("logos/click.png"), width: 99, height: 81 },
 ];
 
 export function Home() {
   return (
     <>
       <section className="hero">
-        <img className="hero__background" src="/assets/images/hero.webp" alt="" width={1440} height={1016} />
-        <img className="hero__overlay" src="/assets/images/hero-overlay.png" alt="" width={1440} height={1103} />
+        <img className="hero__background" src={asset("images/hero.webp")} alt="" width={1440} height={1016} />
+        <img className="hero__overlay" src={asset("images/hero-overlay.png")} alt="" width={1440} height={1103} />
         <div className="hero__content container">
           <h1 className="hero__title">
             Creamos ambientes <br />
@@ -110,7 +111,7 @@ export function Home() {
       <section id="quienes-somos" className="about">
         <img
           className="about__image"
-          src="/assets/images/quienes-somos.webp"
+          src={asset("images/quienes-somos.webp")}
           alt="Espacio en obra con estructura de cielo raso"
           width={503}
           height={542}
@@ -174,7 +175,7 @@ export function Home() {
       <section className="why">
         <img
           className="why__image"
-          src="/assets/images/por-que-heim.webp"
+          src={asset("images/por-que-heim.webp")}
           alt="Técnico trabajando sobre una cubierta"
           width={501}
           height={516}
@@ -200,12 +201,12 @@ export function Home() {
 
       <section className="coverage" aria-labelledby="coverage-title">
         <div className="coverage__map">
-          <img className="coverage__map-image" src="/assets/images/mapa-cobertura.webp" alt="" width={1440} height={559} loading="lazy" />
+          <img className="coverage__map-image" src={asset("images/mapa-cobertura.webp")} alt="" width={1440} height={559} loading="lazy" />
           {MAP_PINS.map((pin) => (
             <img
               key={`${pin.x}-${pin.y}`}
               className="coverage__pin"
-              src="/assets/icons/ubicacion.png"
+              src={asset("icons/ubicacion.png")}
               alt=""
               width={34}
               height={34}
@@ -214,7 +215,7 @@ export function Home() {
           ))}
         </div>
         <div className="coverage__panel">
-          <img className="coverage__panel-bg" src="/assets/images/mapa-panel.png" alt="" width={440} height={398} />
+          <img className="coverage__panel-bg" src={asset("images/mapa-panel.png")} alt="" width={440} height={398} />
           <div className="coverage__text">
             <h2 id="coverage-title" className="coverage__title">
               presencia y cobertura

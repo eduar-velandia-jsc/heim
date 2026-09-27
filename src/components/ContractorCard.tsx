@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import type { Contractor } from "../data/contractors";
+import { asset } from "../lib/asset";
 import "./ContractorCard.css";
 
 export function ContractorCard({ contractor }: { contractor: Contractor }) {
@@ -11,29 +12,29 @@ export function ContractorCard({ contractor }: { contractor: Contractor }) {
 
           <div className="contractor-card__group">
             <p className="contractor-card__row">
-              <img src="/assets/icons/star.png" alt="" width={24} height={24} />
+              <img src={asset("icons/star.png")} alt="" width={24} height={24} />
               <span>
                 <strong className="contractor-card__rating">{contractor.rating} </strong>
                 <span className="contractor-card__muted">{contractor.reviews}</span>
               </span>
             </p>
             <p className="contractor-card__row">
-              <img src="/assets/icons/location.png" alt="" width={20} height={20} />
+              <img src={asset("icons/location.png")} alt="" width={20} height={20} />
               <span className="contractor-card__muted">{contractor.area}</span>
             </p>
           </div>
 
           <div className="contractor-card__group">
             <a className="contractor-card__row contractor-card__phone" href={`tel:${contractor.phone.replace(/[^\d+]/g, "")}`}>
-              <img src="/assets/icons/phone.png" alt="" width={20} height={20} />
+              <img src={asset("icons/phone.png")} alt="" width={20} height={20} />
               <span>{contractor.phone}</span>
             </a>
             <a className="contractor-card__row contractor-card__muted" href={`mailto:${contractor.email}`}>
-              <img src="/assets/icons/mail.png" alt="" width={20} height={20} />
+              <img src={asset("icons/mail.png")} alt="" width={20} height={20} />
               <span>{contractor.email}</span>
             </a>
             <p className="contractor-card__row">
-              <img src="/assets/icons/time.png" alt="" width={20} height={20} />
+              <img src={asset("icons/time.png")} alt="" width={20} height={20} />
               <span className="contractor-card__muted">{contractor.experience}</span>
             </p>
           </div>
@@ -51,7 +52,7 @@ export function ContractorCard({ contractor }: { contractor: Contractor }) {
         </div>
 
         <span className="contractor-card__badge" title="Contratista certificado">
-          <img src="/assets/icons/award-green.png" alt="Certificado" width={24} height={24} />
+          <img src={asset("icons/award-green.png")} alt="Certificado" width={24} height={24} />
         </span>
       </div>
 

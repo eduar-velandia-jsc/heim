@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
+import { asset } from "../lib/asset";
 import "./Footer.css";
 
 const COLUMNS = [
@@ -35,12 +36,12 @@ export function Footer() {
     <footer className="footer">
       <div className="footer__top">
         <div className="footer__about">
-          <img src="/assets/logos/heim-footer.png" alt="Heim creando ambientes" width={215} height={85} />
+          <img src={asset("logos/heim-footer.png")} alt="Heim creando ambientes" width={215} height={85} />
           <p className="footer__blurb">
             Stay updated with our latest Roof Service tips, service updates, and helpful articles on maintaining a spotless home.
           </p>
           <a href="https://www.facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook">
-            <img src="/assets/icons/facebook.png" alt="" width={30} height={30} />
+            <img src={asset("icons/facebook.png")} alt="" width={30} height={30} />
           </a>
         </div>
 

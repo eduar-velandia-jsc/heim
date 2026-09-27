@@ -1,22 +1,23 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { SERVICES } from "../data/services";
+import { asset } from "../lib/asset";
 import "./ContactSection.css";
 
 const HIGHLIGHTS = [
   {
-    icon: "/assets/icons/contact-done.png",
+    icon: asset("icons/contact-done.png"),
     title: "Gestión y Respuesta Ágil",
     text: "Evaluación inicial y estructuración de la propuesta ejecutiva en menos de 24 horas.",
     textClass: "contact__highlight-text--worksans",
   },
   {
-    icon: "/assets/icons/contact-verified.png",
+    icon: asset("icons/contact-verified.png"),
     title: "Rigor Técnico",
     text: "Equipo especializado con pólizas de cumplimiento y control de calidad en acabados.",
     textClass: "contact__highlight-text--inter",
   },
   {
-    icon: "/assets/icons/contact-home.png",
+    icon: asset("icons/contact-home.png"),
     title: "Análisis sin Compromiso",
     text: "Revise el alcance, las especificaciones técnicas y el esquema de ejecución antes de tomar una decisión.",
     textClass: "",
@@ -146,7 +147,7 @@ export function ContactSection() {
                     </option>
                   ))}
                 </select>
-                <img src="/assets/icons/chevron-down.png" alt="" width={20} height={20} />
+                <img src={asset("icons/chevron-down.png")} alt="" width={20} height={20} />
               </span>
               <input
                 id="quote-phone"
@@ -180,7 +181,7 @@ export function ContactSection() {
                   </option>
                 ))}
               </select>
-              <img src="/assets/icons/chevron-down.png" alt="" width={20} height={20} />
+              <img src={asset("icons/chevron-down.png")} alt="" width={20} height={20} />
             </span>
           </label>
 
