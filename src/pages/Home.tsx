@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowButton } from "../components/ArrowButton";
 import { ContactSection } from "../components/ContactSection";
 import { ProjectsSection } from "../components/ProjectsSection";
+import { CONTACT } from "../data/contact";
 import { SERVICES } from "../data/services";
 import { asset } from "../lib/asset";
 import "./Home.css";
@@ -36,15 +37,6 @@ const REASONS = [
   },
 ];
 
-/** Posiciones de los pines sobre el mapa (px del diseño a 1440 × 559). */
-const MAP_PINS = [
-  { x: 1108, y: 220 },
-  { x: 1133, y: 6 },
-  { x: 830, y: 180 },
-  { x: 898, y: 220 },
-  { x: 1250, y: 203 },
-];
-
 const PROCESS_STEPS = [
   { number: "01", title: "Levantamiento", text: "Evaluación técnica del espacio y condiciones iniciales del proyecto." },
   { number: "02", title: "Propuesta", text: "Propuesta técnica y económica adaptada a tus requerimientos y alcance" },
@@ -53,12 +45,12 @@ const PROCESS_STEPS = [
 ];
 
 const CLIENTS = [
-  { name: "Grupo Empresarial Kinku", logo: asset("logos/kinku.png"), width: 211, height: 74 },
-  { name: "The Houzzz", logo: asset("logos/thehouzzz.png"), width: 97, height: 73 },
-  { name: "Sylvania", logo: asset("logos/sylvania.png"), width: 269, height: 74 },
-  { name: "Gilat", logo: asset("logos/gilat.png"), width: 169, height: 78 },
-  { name: "Fonreginal", logo: asset("logos/fonreginal.png"), width: 249, height: 92 },
-  { name: "Click Centro Gráfico", logo: asset("logos/click.png"), width: 99, height: 81 },
+  { name: "Grupo Empresarial Kinku", logo: asset("logos/kinku.png"), width: 127, height: 45 },
+  { name: "The Houzzz", logo: asset("logos/thehouzzz.png"), width: 101, height: 76 },
+  { name: "Sylvania", logo: asset("logos/sylvania.png"), width: 146, height: 40 },
+  { name: "Gilat", logo: asset("logos/gilat.png"), width: 89, height: 41 },
+  { name: "Fonreginal", logo: asset("logos/fonreginal.png"), width: 134, height: 50 },
+  { name: "Click Centro Gráfico", logo: asset("logos/click.png"), width: 91, height: 75 },
 ];
 
 export function Home() {
@@ -80,7 +72,7 @@ export function Home() {
             <Link to="#contacto" className="hero__button hero__button--primary">
               Cotización→
             </Link>
-            <Link to="/servicios" className="hero__button hero__button--outline">
+            <Link to="#servicios" className="hero__button hero__button--outline">
               Nuestros servicios
             </Link>
           </div>
@@ -94,6 +86,12 @@ export function Home() {
               </li>
             ))}
           </ul>
+        </div>
+        <div className="hero__chat container">
+          <a className="chat-button" href={CONTACT.whatsappUrl} target="_blank" rel="noreferrer">
+            Chatea con nosotros
+            <img src={asset("icons/whatsapp.png")} alt="" width={37} height={32} />
+          </a>
         </div>
       </section>
 
@@ -155,6 +153,13 @@ export function Home() {
         <div className="services__grid">
           {SERVICES.map((service) => (
             <article key={service.title} className="service-card">
+              <img
+                className="service-card__icon"
+                src={service.icon.src}
+                alt=""
+                width={service.icon.size}
+                height={service.icon.size}
+              />
               <h3 className="service-card__title">{service.title}</h3>
               <div className="service-card__body">
                 <p>{service.description}</p>
@@ -163,9 +168,6 @@ export function Home() {
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
-                <Link to="#contacto" className="service-card__tag">
-                  Emergency Repairs
-                </Link>
               </div>
             </article>
           ))}
@@ -195,34 +197,21 @@ export function Home() {
               </li>
             ))}
           </ul>
-          <ArrowButton to="#contacto">Book Now</ArrowButton>
+          <ArrowButton to="#contacto">cotiza tu proyecto</ArrowButton>
         </div>
       </section>
 
       <section className="coverage" aria-labelledby="coverage-title">
         <div className="coverage__map">
           <img className="coverage__map-image" src={asset("images/mapa-cobertura.webp")} alt="" width={1440} height={559} loading="lazy" />
-          {MAP_PINS.map((pin) => (
-            <img
-              key={`${pin.x}-${pin.y}`}
-              className="coverage__pin"
-              src={asset("icons/ubicacion.png")}
-              alt=""
-              width={34}
-              height={34}
-              style={{ left: `${(pin.x / 1440) * 100}%`, top: `${(pin.y / 559) * 100}%` }}
-            />
-          ))}
         </div>
         <div className="coverage__panel">
-          <img className="coverage__panel-bg" src={asset("images/mapa-panel.png")} alt="" width={440} height={398} />
+          <img className="coverage__panel-bg" src={asset("images/mapa-panel.png")} alt="" width={456} height={299} />
           <div className="coverage__text">
             <h2 id="coverage-title" className="coverage__title">
-              presencia y cobertura
+              Presencia y capacidad operativa.
             </h2>
             <p className="coverage__subtitle">
-              Presencia y capacidad operativa.
-              <br />
               Atención integral en Bogotá, la Sabana y municipios aledaños para proyectos corporativos y residenciales.
             </p>
           </div>
@@ -237,8 +226,8 @@ export function Home() {
               Una metodología estructurada para garantizar resultados impecables en tiempo y forma.
             </p>
           </div>
-          <ArrowButton to="/proyectos" variant="urbanist">
-            View All Testimonials
+          <ArrowButton to="#contacto" variant="urbanist">
+            cuéntanos de tu proyecto
           </ArrowButton>
         </div>
         <ol className="process__steps">
@@ -254,7 +243,7 @@ export function Home() {
 
       <ProjectsSection />
 
-      <section className="clients container" aria-labelledby="clients-title">
+      <section id="clientes" className="clients container" aria-labelledby="clients-title">
         <h2 id="clients-title" className="clients__title">
           Nuestros clientes
         </h2>

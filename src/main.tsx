@@ -1,11 +1,11 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles/global.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { Home } from "./pages/Home";
 import { Projects } from "./pages/Projects";
-import { Services } from "./pages/Services";
+import { Legal } from "./pages/Legal";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -14,7 +14,8 @@ createRoot(document.getElementById("root")!).render(
         <Route element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="proyectos" element={<Projects />} />
-          <Route path="servicios" element={<Services />} />
+          <Route path="legal" element={<Legal />} />
+          <Route path="servicios" element={<Navigate to="/#servicios" replace />} />
           <Route path="*" element={<Home />} />
         </Route>
       </Routes>

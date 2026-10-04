@@ -112,10 +112,7 @@ export function ContactSection() {
       </div>
 
       <form className="quote-form" onSubmit={handleSubmit}>
-        <div className="quote-form__header">
-          <h3 className="quote-form__title">Request Your Free Quotes</h3>
-          <p className="quote-form__subtitle">Cuéntanos sobre tu espacio y te ayudaremos a materializar el ambiente ideal.</p>
-        </div>
+        <p className="quote-form__subtitle">Cuéntanos sobre tu espacio y te ayudaremos a materializar el ambiente ideal.</p>
 
         <div className="quote-form__fields">
           <div className="quote-form__row">

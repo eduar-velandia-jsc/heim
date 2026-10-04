@@ -11,10 +11,21 @@
   gap: 24px;
 }
 
-.header__logo img {
+.header__spacer {
+  flex-shrink: 0;
   width: 215px;
   height: 76px;
+}
+
+.header__nav-logo img,
+.header__logo-mobile img {
+  width: 114px;
+  height: 44px;
   object-fit: contain;
+}
+
+.header__logo-mobile {
+  display: none;
 }
 
 .header__nav {
@@ -75,7 +86,11 @@
   display: none;
 }
 
-@media (max-width: 1180px) {
+@media (max-width: 1240px) {
+  .header__spacer {
+    display: none;
+  }
+
   .header__nav {
     width: auto;
     padding-inline: 32px;
@@ -87,9 +102,19 @@
     top: 16px;
   }
 
-  .header__logo img {
-    width: 160px;
-    height: 57px;
+  .header__spacer,
+  .header__nav-logo {
+    display: none;
+  }
+
+  /* El logo es blanco: en móvil va sobre una pastilla naranja como en la barra de escritorio */
+  .header__logo-mobile {
+    display: flex;
+    align-items: center;
+    height: 56px;
+    padding: 6px 20px;
+    border-radius: 63px;
+    background: var(--color-primary);
   }
 
   .header__cta {
@@ -139,4 +164,9 @@
     justify-content: center;
     padding-block: 12px;
   }
+}
+
+.header__nav-logo {
+  display: flex;
+  align-items: center;
 }

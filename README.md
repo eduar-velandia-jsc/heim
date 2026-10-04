@@ -21,21 +21,21 @@ npm run typecheck  # solo TypeScript
 
 ## Rutas
 
-| Ruta          | Contenido                                                                                       | Nodos de Figma |
-| ------------- | ----------------------------------------------------------------------------------------------- | -------------- |
-| `/`           | Hero, estadísticas, quiénes somos, servicios, ¿por qué Heim?, cobertura, proceso, proyectos, clientes, contacto | `4:3` |
-| `/proyectos`  | Proyectos destacados + contacto                                                                 | `2310:105` |
-| `/servicios`  | "Soluciones que se adaptan" con tarjetas de contratista, FAQ y contacto                          | `27:11`, `36:116`, `36:117`, `36:118`, `36:160`, `36:161`, `36:113`, `36:204`, `20:6` |
+| Ruta          | Contenido                                                                                                   | Nodo de Figma |
+| ------------- | ----------------------------------------------------------------------------------------------------------- | ------------- |
+| `/`           | Hero con botón de WhatsApp, estadísticas, quiénes somos, servicios, ¿por qué Heim?, cobertura, proceso, proyectos, clientes, contacto | `4:3` |
+| `/proyectos`  | Galería de 4 proyectos destacados + contacto                                                                 | `2385:32` |
+| `/legal`      | Términos, condiciones, política de privacidad y política de garantías                                        | `2353:206` |
 
-`Header` y `Footer` son compartidos (`src/components/Layout.tsx`). Los nodos `2193:98` (Testimonial) y `2228:18` (Rectangle 4) están vacíos en Figma, así que no tienen implementación.
+`Header` y `Footer` son compartidos (`src/components/Layout.tsx`). `/servicios` redirige a la sección de servicios del inicio: su diseño se eliminó del archivo de Figma.
 
 ## Estructura
 
 ```
 public/assets/     imágenes, logos e íconos exportados de Figma
-src/components/    Header, Footer, ContactSection, ProjectCard, ContractorCard, FaqSection…
-src/data/          contenido (servicios, proyectos, contratistas)
-src/pages/         Home, Projects, Services
+src/components/    Header, Footer, ContactSection, ProjectsSection, ProjectCard…
+src/data/          contenido (servicios, proyectos, contacto, textos legales)
+src/pages/         Home, Projects, Legal
 src/styles/        tokens y estilos globales
 ```
 

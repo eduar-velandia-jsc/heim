@@ -5,7 +5,7 @@ import "./Projects.css";
 export function Projects() {
   return (
     <div className="projects-page">
-      <ProjectsSection repeat={2} />
+      <ProjectsSection variant="page" />
       <ContactSection />
     </div>
   );

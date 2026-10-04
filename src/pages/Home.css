@@ -34,7 +34,14 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 34px;
-  padding: 299px 0 100px 2px;
+  padding: 245px 0 100px;
+}
+
+/* En el diseño el texto del hero arranca 24px antes que la retícula de 1220px */
+@media (min-width: 1300px) {
+  .hero__content > * {
+    margin-left: -24px;
+  }
 }
 
 .hero__title {
@@ -124,6 +131,44 @@
   height: 24px;
 }
 
+/* Botón de WhatsApp anclado abajo a la derecha del hero */
+.hero__chat {
+  position: absolute;
+  top: 814px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+.chat-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 300px;
+  padding: 12px 32px;
+  border-radius: 42px;
+  background: var(--color-green);
+  font-family: var(--font-lato);
+  font-size: 20px;
+  line-height: normal;
+  color: var(--color-white);
+  white-space: nowrap;
+  pointer-events: auto;
+  transition: filter 0.2s ease;
+}
+
+.chat-button:hover {
+  filter: brightness(1.08);
+}
+
+.chat-button img {
+  width: 37px;
+  height: 32px;
+}
+
 /* ---------- Stats ---------- */
 .stats {
   position: relative;
@@ -171,6 +216,7 @@
 
 .stats__label {
   font-size: 20px;
+  white-space: nowrap;
   line-height: 1.82;
 }
 
@@ -205,17 +251,17 @@
   align-items: center;
   height: 34px;
   padding: 7px 17px;
-  border: 1px solid var(--color-zinc-200);
+  border: 1px solid var(--color-navy);
   border-radius: 9999px;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 30px;
   line-height: 20px;
   color: var(--color-navy);
 }
 
 .about__text {
   margin-bottom: 44px;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 1.82;
   text-align: justify;
 }
@@ -238,9 +284,9 @@
 }
 
 .services__title {
-  max-width: 586px;
+  max-width: 551px;
   font-weight: 500;
-  font-size: 48px;
+  font-size: 38px;
   line-height: 1.14;
   text-transform: capitalize;
 }
@@ -255,7 +301,7 @@
 .services__eyebrow {
   font-family: var(--font-vietnam);
   font-weight: 600;
-  font-size: 20px;
+  font-size: 25px;
 }
 
 .services__description {
@@ -282,6 +328,11 @@
   background: var(--color-sky);
   filter: drop-shadow(0 4px 8.45px rgba(0, 0, 0, 0.05));
   color: var(--color-navy);
+}
+
+.service-card__icon {
+  flex-shrink: 0;
+  object-fit: contain;
 }
 
 .service-card__title {
@@ -345,7 +396,7 @@
 
 .why__title {
   font-weight: 500;
-  font-size: 48px;
+  font-size: 38px;
   line-height: 1.14;
 }
 
@@ -406,18 +457,12 @@
   object-fit: cover;
 }
 
-.coverage__pin {
-  position: absolute;
-  width: 34px;
-  height: 34px;
-}
-
 .coverage__panel {
   position: absolute;
-  top: 81px;
-  left: max(140px, 50% - 580px);
-  width: 440px;
-  height: 398px;
+  top: 159px;
+  left: max(136px, 50% - 584px);
+  width: 456px;
+  height: 299px;
 }
 
 .coverage__panel-bg {
@@ -429,24 +474,24 @@
 
 .coverage__text {
   position: relative;
-  padding: 56px 0 0 64px;
-  width: 419px;
+  display: flex;
+  flex-direction: column;
+  gap: 27px;
+  width: 412px;
+  padding: 71px 0 0 67px;
   color: var(--color-navy);
+  text-transform: capitalize;
 }
 
 .coverage__title {
-  margin-bottom: 27px;
-  font-weight: 500;
-  font-size: 48px;
+  font-weight: 600;
+  font-size: 24px;
   line-height: 1.14;
-  text-transform: capitalize;
 }
 
 .coverage__subtitle {
-  font-weight: 500;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 1.14;
-  text-transform: capitalize;
 }
 
 /* ---------- Proceso ---------- */
@@ -456,6 +501,10 @@
   gap: 60px;
   padding-block: 121px 80px;
   transform: translateX(-2px);
+}
+
+.process .section-heading__subtitle {
+  font-size: 20px;
 }
 
 .process__steps {
@@ -487,12 +536,12 @@
 }
 
 .process-card__title {
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .process-card__text {
   min-height: 97px;
-  font-size: 16px;
+  font-size: 17px;
 }
 
 /* ---------- Proyectos (home) ---------- */
@@ -505,7 +554,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 44px;
+  gap: 4px;
   padding-block: 105px 62px;
 }
 
@@ -522,14 +571,13 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  width: min(1176px, 100%);
+  width: min(1203px, 100%);
   padding: 0;
   list-style: none;
 }
 
 .clients__logos img {
-  width: auto;
-  height: auto;
+  object-fit: contain;
 }
 
 /* ---------- Responsive ---------- */
@@ -547,7 +595,11 @@
     aspect-ratio: 503 / 542;
   }
 
-  .process__steps {
+  .process .section-heading__subtitle {
+  font-size: 20px;
+}
+
+.process__steps {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -584,10 +636,24 @@
   }
 
   .hero__content {
-    padding: 180px 0 120px;
+    padding: 180px 0 40px;
   }
 
-  .hero__title {
+  .hero__chat {
+    position: relative;
+    top: auto;
+    justify-content: flex-start;
+    padding-bottom: 100px;
+  }
+
+  /* En el diseño el texto del hero arranca 24px antes que la retícula de 1220px */
+@media (min-width: 1300px) {
+  .hero__content > * {
+    margin-left: -24px;
+  }
+}
+
+.hero__title {
     font-size: 48px;
   }
 
@@ -619,7 +685,8 @@
     padding-top: 0;
   }
 
-  .stats__value {
+  .stats__value,
+  .stats__label {
     white-space: normal;
   }
 
@@ -661,7 +728,7 @@
     position: relative;
     top: auto;
     left: auto;
-    width: min(440px, 100% - 2 * var(--gutter));
+    width: min(456px, 100% - 2 * var(--gutter));
     height: auto;
     margin: -120px auto 40px;
   }
@@ -669,10 +736,11 @@
   .coverage__text {
     width: auto;
     padding: 40px 32px;
+    gap: 16px;
   }
 
   .coverage__title {
-    font-size: 36px;
+    font-size: 22px;
   }
 
   .coverage__subtitle {
@@ -685,7 +753,14 @@
 }
 
 @media (max-width: 560px) {
-  .hero__title {
+  /* En el diseño el texto del hero arranca 24px antes que la retícula de 1220px */
+@media (min-width: 1300px) {
+  .hero__content > * {
+    margin-left: -24px;
+  }
+}
+
+.hero__title {
     font-size: 34px;
   }
 
@@ -697,11 +772,16 @@
     font-size: 18px;
   }
 
-  .process__steps {
+  .process .section-heading__subtitle {
+  font-size: 20px;
+}
+
+.process__steps {
     grid-template-columns: minmax(0, 1fr);
   }
 
   .clients__logos img {
     max-width: 40vw;
+    height: auto;
   }
 }

@@ -8,6 +8,10 @@
   font-family: var(--font-urbanist);
 }
 
+.projects--home .projects__subtitle {
+  font-size: 24px;
+}
+
 .projects__list {
   display: flex;
   flex-direction: column;

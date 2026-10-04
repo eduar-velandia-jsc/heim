@@ -1,48 +1,54 @@
-import { useState, type FormEvent } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { CONTACT } from "../data/contact";
 import { asset } from "../lib/asset";
+import { contactLink } from "../lib/contactLink";
 import "./Footer.css";
 
-const COLUMNS = [
+type FooterLink = { label: string; to: string; external?: boolean };
+
+const COLUMNS: { title: string; links: FooterLink[] }[] = [
   {
-    title: "Company",
+    title: "Empresa",
     links: [
-      { label: "About Us", to: "/#quienes-somos" },
-      { label: "Services", to: "/servicios" },
-      { label: "Our Team", to: "/#quienes-somos" },
+      { label: "Sobre nosotros", to: "/#quienes-somos" },
+      { label: "Proyectos", to: "/proyectos" },
+      { label: "clientes", to: "/#clientes" },
     ],
   },
   {
-    title: "Know More",
+    title: "Servicios",
     links: [
-      { label: "Support", to: "#contacto" },
-      { label: "Privacy Policy", to: "#" },
-      { label: "Terms & conditions", to: "#" },
+      { label: "Arquitectura", to: "/#servicios" },
+      { label: "Obra Civil & Redes", to: "/#servicios" },
+      { label: "Adecuación B2B", to: "/#servicios" },
+    ],
+  },
+  {
+    title: "Soporte & Legal",
+    links: [
+      { label: "Contacto Directo", to: "#contacto" },
+      { label: "Política de Privacidad", to: "/legal" },
+      { label: "Términos y Condiciones", to: "/legal" },
+    ],
+  },
+  {
+    title: "Contacto",
+    links: [
+      { label: CONTACT.phone, to: `tel:${CONTACT.phoneE164}`, external: true },
+      { label: CONTACT.email, to: `mailto:${CONTACT.email}`, external: true },
     ],
   },
 ];
 
 export function Footer() {
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
-
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setSubscribed(true);
-    setEmail("");
-  }
+  const { pathname } = useLocation();
 
   return (
     <footer className="footer">
       <div className="footer__top">
         <div className="footer__about">
           <img src={asset("logos/heim-footer.png")} alt="Heim creando ambientes" width={215} height={85} />
-          <p className="footer__blurb">
-            Stay updated with our latest Roof Service tips, service updates, and helpful articles on maintaining a spotless home.
-          </p>
-          <a href="https://www.facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook">
-            <img src={asset("icons/facebook.png")} alt="" width={30} height={30} />
-          </a>
+          <p className="footer__blurb">Soluciones integrales de diseño, obra civil y adecuación técnica de espacios.</p>
         </div>
 
         {COLUMNS.map((column) => (
@@ -51,43 +57,20 @@ export function Footer() {
             <ul className="footer__links">
               {column.links.map((link) => (
                 <li key={link.label}>
-                  <Link to={link.to}>{link.label}</Link>
+                  {link.external ? <a href={link.to}>{link.label}</a> : <Link to={link.to === "#contacto" ? contactLink(pathname) : link.to}>{link.label}</Link>}
                 </li>
               ))}
             </ul>
           </div>
         ))}
-
-        <form className="footer__newsletter" onSubmit={handleSubmit}>
-          <label className="footer__title" htmlFor="newsletter-email">
-            Newsletter
-          </label>
-          <input
-            id="newsletter-email"
-            className="footer__input"
-            type="email"
-            required
-            placeholder="Email Goes here"
-            value={email}
-            onChange={(event) => {
-              setEmail(event.target.value);
-              setSubscribed(false);
-            }}
-          />
-          <button type="submit" className="footer__send">
-            Send
-          </button>
-          {subscribed && (
-            <p className="footer__success" role="status">
-              ¡Gracias por suscribirte!
-            </p>
-          )}
-        </form>
       </div>
 
       <div className="footer__bottom">
         <hr className="footer__line" />
-        <p className="footer__copy">2025 “RoofFixer” All Rights Received</p>
+        <p className="footer__copy">
+          <span>© 2026 Heim. Todos los derechos reservados.</span>
+          <span>Desarrollado por Tecnovip</span>
+        </p>
       </div>
     </footer>
   );

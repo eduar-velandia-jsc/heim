@@ -1,7 +1,10 @@
+import { asset } from "../lib/asset";
+
 export type Service = {
   title: string;
   description: string;
   items: string[];
+  icon: { src: string; size: number };
 };
 
 export const SERVICES: Service[] = [
@@ -12,6 +15,7 @@ export const SERVICES: Service[] = [
       "Construcción en seco: Muros livianos, divisiones y cielos rasos en drywall, PVC y superboard.",
       "Proyectos a medida: Remodelación integral de cocinas, baños, oficinas y obra blanca.",
     ],
+    icon: { src: asset("icons/service-plano.png"), size: 50 },
   },
   {
     title: "Acabados & Decoración",
@@ -20,14 +24,16 @@ export const SERVICES: Service[] = [
       "Revestimientos : Pintura y acabados para todo tipo de muros, fachadas y estructuras.",
       "Superficies y pisos: Instalación integral de revestimientos  y paneles decorativos.",
     ],
+    icon: { src: asset("icons/service-rodillo.png"), size: 36 },
   },
   {
-    title: "Mantenimiento Locativo",
-    description: "Soporte técnico continuo para conservar tus instalaciones operativas.",
+    title: "Facilities & Mantenimiento Integral",
+    description: "Soporte técnico para garantizar la operatividad de sus instalaciones.",
     items: [
-      "Mantenimiento integral: Reparación de estructuras plomería en drywall, fachadas y pintura.",
-      "Adecuaciones: Armado de muebles, iluminación, cableado y persianas.",
+      "Mantenimiento Integral: Infraestructura, redes hidrosanitarias, Drywall, fachadas y pintura especializada.",
+      "Adecuaciones & Fit-Outs: Reconfiguración de espacios, iluminación, canalización de redes y carpintería.",
     ],
+    icon: { src: asset("icons/service-herramientas.png"), size: 50 },
   },
   {
     title: "Domótica",
@@ -36,5 +42,6 @@ export const SERVICES: Service[] = [
       "Automatización: Control de iluminación, persianas y cerraduras digitales.",
       "Espacios conectados: Equipamiento de salas de juntas y sonido digital.",
     ],
+    icon: { src: asset("icons/service-casa-inteligente.png"), size: 40 },
   },
 ];

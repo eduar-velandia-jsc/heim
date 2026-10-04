@@ -1,7 +1,13 @@
 import type { Project } from "../data/projects";
 import "./ProjectCard.css";
 
-export function ProjectCard({ project }: { project: Project }) {
+type ProjectCardProps = {
+  project: Project;
+  /** En /proyectos cada especificación va precedida de un guion. */
+  dashedSpecs?: boolean;
+};
+
+export function ProjectCard({ project, dashedSpecs = false }: ProjectCardProps) {
   return (
     <article className="project-card">
       <img
@@ -29,7 +35,7 @@ export function ProjectCard({ project }: { project: Project }) {
           <h4 className="project-card__heading">Especificaciones técnicas:</h4>
           <div className="project-card__text">
             {project.specs.map((spec) => (
-              <p key={spec}>{spec}</p>
+              <p key={spec}>{dashedSpecs ? `-${spec}` : spec}</p>
             ))}
           </div>
         </div>

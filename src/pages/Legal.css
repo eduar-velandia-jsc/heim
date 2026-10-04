@@ -1,0 +1,34 @@
+.legal {
+  padding-block: 229px 120px;
+  font-family: var(--font-montserrat);
+  font-size: 16px;
+  line-height: 1.82;
+  color: var(--color-navy);
+}
+
+.legal > * {
+  max-width: 1144px;
+}
+
+/* En el diseño cada bloque va separado por una línea en blanco */
+.legal > * + * {
+  margin-top: 29px;
+}
+
+/* …salvo el párrafo que sigue directamente a un título */
+.legal > :is(.legal__title, .legal__heading) + p {
+  margin-top: 0;
+}
+
+.legal__title,
+.legal__heading {
+  font-size: inherit;
+  font-weight: 700;
+  line-height: inherit;
+}
+
+@media (max-width: 960px) {
+  .legal {
+    padding-top: 160px;
+  }
+}
