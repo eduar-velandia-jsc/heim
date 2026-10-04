@@ -41,7 +41,7 @@ src/styles/        tokens y estilos globales
 
 ## Formulario de cotización
 
-Las solicitudes se envían con [FormSubmit](https://formsubmit.co) a `heimcreandoambientes@gmail.com` (configurado en `src/data/contact.ts`). La primera vez que alguien envía el formulario, FormSubmit manda a ese buzón un correo de activación: hay que abrirlo y confirmar una sola vez. Desde ese momento cada solicitud llega como un correo con los datos en una tabla.
+Las solicitudes se envían con [FormSubmit](https://formsubmit.co) a `heimcreandoambientes@gmail.com`. En `src/data/contact.ts` se usa el alias que FormSubmit dio al activar el formulario, para no exponer el correo. La primera vez que alguien envía el formulario, FormSubmit manda a ese buzón un correo de activación: hay que abrirlo y confirmar una sola vez. Desde ese momento cada solicitud llega como un correo con los datos en una tabla.
 
 ## Carrusel de proyectos
 
