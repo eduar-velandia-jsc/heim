@@ -4,13 +4,10 @@
   gap: 30px;
 }
 
-.project-card__image {
+.project-card__media {
   flex: 0 1 649px;
   width: 649px;
   min-width: 0;
-  height: auto;
-  border-radius: 30px;
-  object-fit: cover;
 }
 
 .project-card__body {
@@ -51,7 +48,7 @@
     flex-direction: column;
   }
 
-  .project-card__image,
+  .project-card__media,
   .project-card__body {
     flex-basis: auto;
     width: 100%;

@@ -1,4 +1,5 @@
 import type { Project } from "../data/projects";
+import { ProjectCarousel } from "./ProjectCarousel";
 import "./ProjectCard.css";
 
 type ProjectCardProps = {
@@ -10,15 +11,9 @@ type ProjectCardProps = {
 export function ProjectCard({ project, dashedSpecs = false }: ProjectCardProps) {
   return (
     <article className="project-card">
-      <img
-        className="project-card__image"
-        src={project.image}
-        alt={project.name}
-        width={649}
-        height={project.imageHeight}
-        style={{ aspectRatio: `649 / ${project.imageHeight}` }}
-        loading="lazy"
-      />
+      <div className="project-card__media">
+        <ProjectCarousel slides={project.gallery} label={project.name} aspectRatio={`649 / ${project.imageHeight}`} />
+      </div>
       <div className="project-card__body">
         <div className="project-card__block">
           <h3 className="project-card__heading">

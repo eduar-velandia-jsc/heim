@@ -1,20 +1,35 @@
 import { asset } from "../lib/asset";
 
+export type ProjectSlide = { type: "image" | "video"; src: string };
+
 export type Project = {
   date: string;
   category: string;
   name: string;
-  image: string;
+  /** Fotos (y video) del carrusel, en orden. */
+  gallery: ProjectSlide[];
+  /** Alto del marco del carrusel a 649px de ancho, como en el diseño. */
   imageHeight: number;
   challengeTitle: string;
   challenge: string;
   specs: string[];
 };
 
-const ZAJARI: Omit<Project, "image" | "imageHeight"> = {
+/** Galería de `public/assets/projects/<folder>/`: 01.webp … NN.webp y, si existe, video.mp4 al final. */
+function gallery(folder: string, photos: number, withVideo = false): ProjectSlide[] {
+  const slides: ProjectSlide[] = Array.from({ length: photos }, (_, i) => ({
+    type: "image",
+    src: asset(`projects/${folder}/${String(i + 1).padStart(2, "0")}.webp`),
+  }));
+  if (withVideo) slides.push({ type: "video", src: asset(`projects/${folder}/video.mp4`) });
+  return slides;
+}
+
+const ZAJARI: Omit<Project, "imageHeight"> = {
   date: "01 / 07/2026",
   category: "Remodelación Residencial",
   name: "Proyecto Zajarí – Reconfiguración Arquitectura & Redes",
+  gallery: gallery("zajari", 12),
   challengeTitle: "Desafío y solución técnica",
   challenge:
     "Reingeniería operativa de redes hidrosanitarias y de gas para cambiar la orientación de la estufa y el lavaplatos, optimizando la circulación del área social.",
@@ -29,7 +44,7 @@ const FONREGINAL: Project = {
   date: "17/ 04/2025",
   category: "Integración corporativa & Branding",
   name: "Fondo de Empleados Fonreginal – Redistribución & Renovación Integral",
-  image: asset("images/proyecto-fonreginal.webp"),
+  gallery: gallery("fonreginal", 15),
   imageHeight: 599,
   challengeTitle: "Desafío y solución técnica:",
   challenge:
@@ -44,19 +59,19 @@ const FONREGINAL: Project = {
 
 /** Proyectos destacados que muestra la página de inicio. */
 export const FEATURED_PROJECTS: Project[] = [
-  { ...ZAJARI, image: asset("images/proyecto-zajari.webp"), imageHeight: 608 },
+  { ...ZAJARI, imageHeight: 608 },
   FONREGINAL,
 ];
 
 /** Galería completa de la página /proyectos. */
 export const ALL_PROJECTS: Project[] = [
-  { ...ZAJARI, image: asset("images/proyecto-zajari-alt.webp"), imageHeight: 589 },
+  { ...ZAJARI, imageHeight: 589 },
   FONREGINAL,
   {
     date: "01 / 03/2026",
     category: "Paisajismo técnico & Obra civil",
     name: "Showroom Solar Sylvannia – Estética & Exhibición",
-    image: asset("images/proyecto-showroom-solar.webp"),
+    gallery: gallery("showroom-solar", 12),
     imageHeight: 608,
     challengeTitle: "Desafío y solución técnica",
     challenge:
@@ -72,7 +87,7 @@ export const ALL_PROJECTS: Project[] = [
     date: "17/ 04/2025",
     category: "Adecuación corporativa",
     name: "Baño Sylvania – Ampliación y Redes",
-    image: asset("images/proyecto-bano-sylvania.webp"),
+    gallery: gallery("bano-sylvania", 10, true),
     imageHeight: 599,
     challengeTitle: "Desafío y solución técnica:",
     challenge:

@@ -24,7 +24,7 @@ npm run typecheck  # solo TypeScript
 | Ruta          | Contenido                                                                                                   | Nodo de Figma |
 | ------------- | ----------------------------------------------------------------------------------------------------------- | ------------- |
 | `/`           | Hero con botón de WhatsApp, estadísticas, quiénes somos, servicios, ¿por qué Heim?, cobertura, proceso, proyectos, clientes, contacto | `4:3` |
-| `/proyectos`  | Galería de 4 proyectos destacados + contacto                                                                 | `2385:32` |
+| `/proyectos`  | 4 proyectos destacados, cada uno con carrusel de fotos + contacto                                            | `2385:32` |
 | `/legal`      | Términos, condiciones, política de privacidad y política de garantías                                        | `2353:206` |
 
 `Header` y `Footer` son compartidos (`src/components/Layout.tsx`). `/servicios` redirige a la sección de servicios del inicio: su diseño se eliminó del archivo de Figma.
@@ -42,6 +42,10 @@ src/styles/        tokens y estilos globales
 ## Formulario de cotización
 
 Las solicitudes se envían con [FormSubmit](https://formsubmit.co) a `heimcreandoambientes@gmail.com` (configurado en `src/data/contact.ts`). La primera vez que alguien envía el formulario, FormSubmit manda a ese buzón un correo de activación: hay que abrirlo y confirmar una sola vez. Desde ese momento cada solicitud llega como un correo con los datos en una tabla.
+
+## Carrusel de proyectos
+
+Cada proyecto muestra sus fotos en un carrusel (`src/components/ProjectCarousel.tsx`) que avanza solo cada 5 s y se maneja con flechas, puntos, teclado o deslizando. Las fotos viven en `public/assets/projects/<proyecto>/` como `01.webp`, `02.webp`… (y `video.mp4` si hay video). Para añadir fotos, agrégalas con el siguiente número y actualiza la cantidad en `src/data/projects.ts`.
 
 ## Recursos
 
