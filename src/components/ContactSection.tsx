@@ -46,7 +46,7 @@ const COUNTRY_CODES = [
  */
 const FORM_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT.formRecipient}`;
 
-type Status = "idle" | "sending" | "sent" | "error";
+type Status = "idle" | "sending" | "sent" | "pending-activation" | "error";
 
 type FormState = {
   firstName: string;
@@ -106,11 +106,18 @@ export function ContactSection() {
           "Acepta política de privacidad": form.privacy ? "Sí" : "No",
         }),
       });
-      const data: { success?: string | boolean } = await response.json().catch(() => ({}));
-      if (!response.ok || String(data.success) !== "true") throw new Error("Envío rechazado");
-      setStatus("sent");
-      setForm(INITIAL_STATE);
-    } catch {
+      const data: { success?: string | boolean; message?: string } = await response.json().catch(() => ({}));
+      if (response.ok && String(data.success) === "true") {
+        setStatus("sent");
+        setForm(INITIAL_STATE);
+        return;
+      }
+      // Se deja el motivo en la consola del navegador para poder diagnosticarlo.
+      console.warn("FormSubmit rechazó el envío", response.status, data);
+      // Mientras el buzón no confirme el correo de activación, FormSubmit responde con este aviso.
+      setStatus(/activat/i.test(data.message ?? "") ? "pending-activation" : "error");
+    } catch (error) {
+      console.warn("No se pudo contactar con FormSubmit", error);
       setStatus("error");
     }
   }
@@ -248,6 +255,12 @@ export function ContactSection() {
 
           <p className="quote-form__status" role="status" aria-live="polite">
             {status === "sent" && <span className="quote-form__success">¡Gracias! Recibimos tu solicitud y te contactaremos en menos de 24 horas.</span>}
+            {status === "pending-activation" && (
+              <span className="quote-form__error">
+                El formulario está pendiente de activación. Mientras tanto, escríbenos a{" "}
+                <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a> o por WhatsApp.
+              </span>
+            )}
             {status === "error" && (
               <span className="quote-form__error">
                 No pudimos enviar tu solicitud. Inténtalo de nuevo o escríbenos a{" "}
