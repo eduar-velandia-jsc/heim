@@ -4,9 +4,10 @@ Options -MultiViews
 RewriteEngine On
 RewriteBase /
 
-# Forzar HTTPS (activa estas dos líneas cuando el certificado SSL del dominio esté activo en hPanel)
-# RewriteCond %{HTTPS} !=on
-# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# Forzar HTTPS: http://somosheim.com/... → https://somosheim.com/...
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # SPA: cualquier ruta que no sea un archivo real (/proyectos, /legal…) la resuelve index.html
 RewriteCond %{REQUEST_FILENAME} !-f

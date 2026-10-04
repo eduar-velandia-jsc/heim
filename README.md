@@ -65,4 +65,4 @@ El sitio se publica en GitHub Pages en <https://eduar-velandia-jsc.github.io/hei
 npm run build:hostinger
 ```
 
-Genera `dist-hostinger/` y `heim-hostinger.zip`, compilados para la raíz del dominio (`base: "/"`) e incluyendo `hosting/hostinger/.htaccess` (rutas de la SPA, caché y compresión). Para publicar: hPanel → Administrador de archivos → `public_html` → subir `heim-hostinger.zip` → Extraer. El `.htaccess` es un archivo oculto: debe quedar dentro de `public_html` junto a `index.html`.
+Publicado en <https://somosheim.com/>. Genera `dist-hostinger/` y `heim-hostinger.zip`, compilados para la raíz del dominio (`base: "/"`) e incluyendo `hosting/hostinger/.htaccess` (HTTPS obligatorio, rutas de la SPA, caché y compresión). Para publicar: hPanel → Administrador de archivos → `public_html` → subir `heim-hostinger.zip` → Extraer. El `.htaccess` es un archivo oculto: debe quedar dentro de `public_html` junto a `index.html`.
