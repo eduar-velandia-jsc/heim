@@ -2,9 +2,9 @@
  * Animación común de los botones: al pasar el cursor se elevan como si invitaran a pulsarlos
  * y al hacer clic se hunden. Se importa después del CSS de los componentes para tener prioridad.
  */
+/* (.header__cta define su propia transición en Header.css, que además anima el ocultado al hacer scroll) */
 .arrow-button,
 .hero__button,
-.header__cta,
 .quote-form__submit,
 .footer__social a {
   transition:

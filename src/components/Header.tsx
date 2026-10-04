@@ -26,7 +26,7 @@ export function Header() {
         <span className="header__spacer" aria-hidden="true" />
 
         <Link to="/" className="header__logo-mobile" aria-label="Heim, ir al inicio">
-          <img src={logo} alt="Heim creando ambientes" width={114} height={44} />
+          <img src={logo} alt="Heim creando ambientes" width={96} height={37} />
         </Link>
 
         <button
@@ -44,7 +44,7 @@ export function Header() {
 
         <nav id="main-nav" className={open ? "header__nav header__nav--open" : "header__nav"} aria-label="Principal">
           <Link to="/" className="header__nav-logo" aria-label="Heim, ir al inicio">
-            <img src={logo} alt="Heim creando ambientes" width={114} height={44} />
+            <img src={logo} alt="Heim creando ambientes" width={96} height={37} />
           </Link>
           {NAV_ITEMS.map((item) => {
             const active = item.match(pathname, hash);

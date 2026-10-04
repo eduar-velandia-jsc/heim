@@ -16,7 +16,6 @@
 }
 
 .header--scrolled .header__nav,
-.header--scrolled .header__cta,
 .header--scrolled .header__logo-mobile,
 .header--scrolled .header__toggle {
   box-shadow: 0 8px 24px rgba(12, 35, 61, 0.18);
@@ -32,13 +31,13 @@
 .header__spacer {
   flex-shrink: 0;
   width: 215px;
-  height: 76px;
+  height: 56px;
 }
 
 .header__nav-logo img,
 .header__logo-mobile img {
-  width: 114px;
-  height: 44px;
+  width: 96px;
+  height: 37px;
   object-fit: contain;
 }
 
@@ -56,8 +55,9 @@
   align-items: center;
   justify-content: center;
   gap: 24px;
-  width: 718px;
-  height: 72px;
+  width: 640px;
+  /* Barra delgada: 56px en lugar de los 72px del diseño original */
+  height: 56px;
   border-radius: 63px;
   background: var(--color-primary);
 }
@@ -66,7 +66,7 @@
   display: flex;
   align-items: center;
   height: 100%;
-  padding-block: 10px;
+  padding-block: 6px;
   border-bottom: 2px solid transparent;
   font-family: var(--font-poppins);
   font-size: 16px;
@@ -109,6 +109,22 @@
   display: none;
 }
 
+/* Cotización se queda arriba: al hacer scroll desaparece y solo la barra acompaña la página */
+.header__cta {
+  transition:
+    opacity 0.25s ease,
+    visibility 0.25s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+}
+
+.header--scrolled .header__cta {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 @media (max-width: 1240px) {
   .header__spacer {
     display: none;
@@ -138,7 +154,7 @@
   .header__logo-mobile {
     display: flex;
     align-items: center;
-    height: 56px;
+    height: 52px;
     padding: 6px 20px;
     border-radius: 63px;
     background: var(--color-primary);
