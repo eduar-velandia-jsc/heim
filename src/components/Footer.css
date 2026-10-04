@@ -37,6 +37,29 @@
   line-height: 1.6;
 }
 
+.footer__social {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.footer__social a {
+  display: flex;
+  font-size: 30px;
+  color: var(--color-white);
+}
+
+.footer__social a:hover {
+  color: var(--color-primary);
+  transform: translateY(-3px) scale(1.1);
+}
+
+.footer__social a:active {
+  transform: scale(0.94);
+}
+
 .footer__column {
   display: flex;
   flex-direction: column;
@@ -83,10 +106,6 @@
 }
 
 .footer__copy {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px 60px;
   font-family: var(--font-vietnam);
   font-size: 16px;
   line-height: 1.2;

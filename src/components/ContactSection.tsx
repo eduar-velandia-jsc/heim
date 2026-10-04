@@ -1,4 +1,6 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
+import { Link } from "react-router-dom";
+import { CONTACT } from "../data/contact";
 import { SERVICES } from "../data/services";
 import { asset } from "../lib/asset";
 import "./ContactSection.css";
@@ -33,9 +35,18 @@ const GUARANTEES = [
 ];
 
 const COUNTRY_CODES = [
-  { code: "US", dial: "+1" },
   { code: "CO", dial: "+57" },
+  { code: "US", dial: "+1" },
 ];
+
+/**
+ * Las solicitudes se envían por correo con FormSubmit (https://formsubmit.co), un servicio sin
+ * servidor propio. El primer envío manda a la bandeja de destino un correo de activación que hay
+ * que confirmar una sola vez; a partir de ahí cada solicitud llega como correo.
+ */
+const FORM_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT.formRecipient}`;
+
+type Status = "idle" | "sending" | "sent" | "error";
 
 type FormState = {
   firstName: string;
@@ -53,7 +64,7 @@ const INITIAL_STATE: FormState = {
   firstName: "",
   lastName: "",
   email: "",
-  country: "US",
+  country: "CO",
   phone: "",
   projectType: "",
   location: "",
@@ -63,19 +74,45 @@ const INITIAL_STATE: FormState = {
 
 export function ContactSection() {
   const [form, setForm] = useState<FormState>(INITIAL_STATE);
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
 
   function update(event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) {
     const { name, value, type } = event.target;
     const nextValue = type === "checkbox" ? (event.target as HTMLInputElement).checked : value;
     setForm((current) => ({ ...current, [name]: nextValue }));
-    setSent(false);
+    if (status !== "sending") setStatus("idle");
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSent(true);
-    setForm(INITIAL_STATE);
+    setStatus("sending");
+
+    const dial = COUNTRY_CODES.find((country) => country.code === form.country)?.dial ?? "";
+    try {
+      const response = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          _subject: `Nueva solicitud de cotización – ${form.firstName} ${form.lastName}`,
+          _template: "table",
+          _replyto: form.email,
+          Nombre: form.firstName,
+          Apellido: form.lastName,
+          Correo: form.email,
+          Celular: form.phone ? `${dial} ${form.phone}` : "",
+          "Tipo de proyecto": form.projectType,
+          "Ubicación del proyecto": form.location,
+          "Detalles del proyecto": form.details,
+          "Acepta política de privacidad": form.privacy ? "Sí" : "No",
+        }),
+      });
+      const data: { success?: string | boolean } = await response.json().catch(() => ({}));
+      if (!response.ok || String(data.success) !== "true") throw new Error("Envío rechazado");
+      setStatus("sent");
+      setForm(INITIAL_STATE);
+    } catch {
+      setStatus("error");
+    }
   }
 
   return (
@@ -118,17 +155,17 @@ export function ContactSection() {
           <div className="quote-form__row">
             <label className="quote-form__field">
               <span className="quote-form__label">Nombre</span>
-              <input className="quote-form__control" name="firstName" placeholder="First name" required value={form.firstName} onChange={update} />
+              <input className="quote-form__control" name="firstName" placeholder="Tu nombre" required value={form.firstName} onChange={update} />
             </label>
             <label className="quote-form__field">
               <span className="quote-form__label">Apellido</span>
-              <input className="quote-form__control" name="lastName" placeholder="Last name" required value={form.lastName} onChange={update} />
+              <input className="quote-form__control" name="lastName" placeholder="Tu apellido" required value={form.lastName} onChange={update} />
             </label>
           </div>
 
           <label className="quote-form__field">
             <span className="quote-form__label">Email</span>
-            <input className="quote-form__control" type="email" name="email" placeholder="you@company.com" required value={form.email} onChange={update} />
+            <input className="quote-form__control" type="email" name="email" placeholder="tucorreo@empresa.com" required value={form.email} onChange={update} />
           </label>
 
           <div className="quote-form__field">
@@ -151,7 +188,7 @@ export function ContactSection() {
                 className="quote-form__bare-input"
                 type="tel"
                 name="phone"
-                placeholder={`${COUNTRY_CODES.find((c) => c.code === form.country)?.dial ?? "+1"} (555) 000-0000`}
+                placeholder={`${COUNTRY_CODES.find((c) => c.code === form.country)?.dial ?? "+57"} 300 000 0000`}
                 value={form.phone}
                 onChange={update}
               />
@@ -170,7 +207,7 @@ export function ContactSection() {
                 data-empty={form.projectType === ""}
               >
                 <option value="" disabled>
-                  Select project type
+                  Selecciona el tipo de proyecto
                 </option>
                 {SERVICES.map((service) => (
                   <option key={service.title} value={service.title}>
@@ -184,7 +221,7 @@ export function ContactSection() {
 
           <label className="quote-form__field">
             <span className="quote-form__label">Ubicación del proyecto</span>
-            <input className="quote-form__control quote-form__control--pl12" name="location" placeholder="123 Main St. City, State ZIP" value={form.location} onChange={update} />
+            <input className="quote-form__control quote-form__control--pl12" name="location" placeholder="Kr 58 # 81B – 20, Bogotá, barrio Jorge Eliécer Gaitán" value={form.location} onChange={update} />
           </label>
 
           <label className="quote-form__field">
@@ -192,7 +229,7 @@ export function ContactSection() {
             <textarea
               className="quote-form__control quote-form__textarea"
               name="details"
-              placeholder="Tell us more about your roofing needs..."
+              placeholder="Cuéntanos más sobre tu proyecto: espacio, medidas, tiempos…"
               value={form.details}
               onChange={update}
             />
@@ -200,18 +237,24 @@ export function ContactSection() {
 
           <label className="quote-form__checkbox">
             <input type="checkbox" name="privacy" required checked={form.privacy} onChange={update} />
-            <span>Acepto nuestra política de privacidad.</span>
+            <span>
+              Acepto nuestra <Link to="/legal">política de privacidad</Link>.
+            </span>
           </label>
 
-          <button type="submit" className="quote-form__submit">
-            {"Agendar asesoría -->"}
+          <button type="submit" className="quote-form__submit" disabled={status === "sending"}>
+            {status === "sending" ? "Enviando…" : "Agendar asesoría -->"}
           </button>
 
-          {sent && (
-            <p className="quote-form__success" role="status">
-              ¡Gracias! Te contactaremos en menos de 24 horas.
-            </p>
-          )}
+          <p className="quote-form__status" role="status" aria-live="polite">
+            {status === "sent" && <span className="quote-form__success">¡Gracias! Recibimos tu solicitud y te contactaremos en menos de 24 horas.</span>}
+            {status === "error" && (
+              <span className="quote-form__error">
+                No pudimos enviar tu solicitud. Inténtalo de nuevo o escríbenos a{" "}
+                <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>.
+              </span>
+            )}
+          </p>
         </div>
       </form>
     </section>

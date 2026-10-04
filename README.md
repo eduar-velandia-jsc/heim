@@ -39,6 +39,10 @@ src/pages/         Home, Projects, Legal
 src/styles/        tokens y estilos globales
 ```
 
+## Formulario de cotización
+
+Las solicitudes se envían con [FormSubmit](https://formsubmit.co) a `heimcreandoambientes@gmail.com` (configurado en `src/data/contact.ts`). La primera vez que alguien envía el formulario, FormSubmit manda a ese buzón un correo de activación: hay que abrirlo y confirmar una sola vez. Desde ese momento cada solicitud llega como un correo con los datos en una tabla.
+
 ## Recursos
 
 Los recursos se exportaron como PNG/WebP renderizando cada nodo en Figma. Los íconos vectoriales quedaron en PNG a 1x. Si se necesitan SVG nítidos en pantallas retina, se pueden reemplazar en `public/assets/icons/` con el mismo nombre.

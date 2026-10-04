@@ -1,7 +1,25 @@
 .header {
-  position: absolute;
+  /* Flotante: la barra acompaña el scroll en todas las páginas */
+  position: fixed;
   inset: 32px 0 auto;
-  z-index: 10;
+  z-index: 30;
+  pointer-events: none;
+  transition: top 0.3s ease;
+}
+
+.header__inner > * {
+  pointer-events: auto;
+}
+
+.header--scrolled {
+  top: 12px;
+}
+
+.header--scrolled .header__nav,
+.header--scrolled .header__cta,
+.header--scrolled .header__logo-mobile,
+.header--scrolled .header__toggle {
+  box-shadow: 0 8px 24px rgba(12, 35, 61, 0.18);
 }
 
 .header__inner {
@@ -26,6 +44,11 @@
 
 .header__logo-mobile {
   display: none;
+}
+
+.header__nav-logo {
+  display: flex;
+  align-items: center;
 }
 
 .header__nav {
@@ -102,6 +125,10 @@
     top: 16px;
   }
 
+  .header--scrolled {
+    top: 8px;
+  }
+
   .header__spacer,
   .header__nav-logo {
     display: none;
@@ -164,9 +191,4 @@
     justify-content: center;
     padding-block: 12px;
   }
-}
-
-.header__nav-logo {
-  display: flex;
-  align-items: center;
 }

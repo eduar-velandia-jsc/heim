@@ -1,3 +1,4 @@
+import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa6";
 import { Link, useLocation } from "react-router-dom";
 import { CONTACT } from "../data/contact";
 import { asset } from "../lib/asset";
@@ -40,6 +41,12 @@ const COLUMNS: { title: string; links: FooterLink[] }[] = [
   },
 ];
 
+const SOCIAL = [
+  { label: "Facebook", href: CONTACT.social.facebook, Icon: FaFacebook },
+  { label: "Instagram", href: CONTACT.social.instagram, Icon: FaInstagram },
+  { label: "LinkedIn", href: CONTACT.social.linkedin, Icon: FaLinkedin },
+];
+
 export function Footer() {
   const { pathname } = useLocation();
 
@@ -49,6 +56,15 @@ export function Footer() {
         <div className="footer__about">
           <img src={asset("logos/heim-footer.png")} alt="Heim creando ambientes" width={215} height={85} />
           <p className="footer__blurb">Soluciones integrales de diseño, obra civil y adecuación técnica de espacios.</p>
+          <ul className="footer__social">
+            {SOCIAL.map(({ label, href, Icon }) => (
+              <li key={label}>
+                <a href={href} target="_blank" rel="noreferrer" aria-label={label}>
+                  <Icon aria-hidden="true" />
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
 
         {COLUMNS.map((column) => (
@@ -67,10 +83,7 @@ export function Footer() {
 
       <div className="footer__bottom">
         <hr className="footer__line" />
-        <p className="footer__copy">
-          <span>© 2026 Heim. Todos los derechos reservados.</span>
-          <span>Desarrollado por Tecnovip</span>
-        </p>
+        <p className="footer__copy">© 2026 Heim. Todos los derechos reservados. | Desarrollado por Tecnovip</p>
       </div>
     </footer>
   );

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useScrolled } from "../hooks/useScrolled";
 import { asset } from "../lib/asset";
 import { contactLink } from "../lib/contactLink";
 import "./Header.css";
@@ -16,9 +17,10 @@ const NAV_ITEMS = [
 export function Header() {
   const { pathname, hash } = useLocation();
   const [open, setOpen] = useState(false);
+  const scrolled = useScrolled(24);
 
   return (
-    <header className="header">
+    <header className={scrolled ? "header header--scrolled" : "header"}>
       <div className="header__inner container">
         {/* En el diseño el logo va dentro de la barra; este hueco mantiene la barra en su sitio */}
         <span className="header__spacer" aria-hidden="true" />

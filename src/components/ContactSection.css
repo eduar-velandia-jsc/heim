@@ -339,9 +339,32 @@
   filter: brightness(1.08);
 }
 
-.quote-form__success {
+.quote-form__submit:disabled {
+  cursor: progress;
+  opacity: 0.7;
+}
+
+.quote-form__status:empty {
+  display: none;
+}
+
+.quote-form__status {
   font-size: 14px;
+  line-height: 1.5;
+}
+
+.quote-form__success {
   color: var(--color-green);
+}
+
+.quote-form__error {
+  color: #c0392b;
+}
+
+.quote-form__error a,
+.quote-form__checkbox a {
+  color: inherit;
+  text-decoration: underline;
 }
 
 @media (max-width: 1100px) {

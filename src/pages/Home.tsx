@@ -1,8 +1,8 @@
+import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import { ArrowButton } from "../components/ArrowButton";
 import { ContactSection } from "../components/ContactSection";
 import { ProjectsSection } from "../components/ProjectsSection";
-import { CONTACT } from "../data/contact";
 import { SERVICES } from "../data/services";
 import { asset } from "../lib/asset";
 import "./Home.css";
@@ -86,12 +86,6 @@ export function Home() {
               </li>
             ))}
           </ul>
-        </div>
-        <div className="hero__chat container">
-          <a className="chat-button" href={CONTACT.whatsappUrl} target="_blank" rel="noreferrer">
-            Chatea con nosotros
-            <img src={asset("icons/whatsapp.png")} alt="" width={37} height={32} />
-          </a>
         </div>
       </section>
 
@@ -249,7 +243,11 @@ export function Home() {
         </h2>
         <ul className="clients__logos">
           {CLIENTS.map((client) => (
-            <li key={client.name}>
+            <li
+              key={client.name}
+              className="clients__logo"
+              style={{ "--logo": `url("${client.logo}")` } as CSSProperties}
+            >
               <img src={client.logo} alt={client.name} width={client.width} height={client.height} loading="lazy" />
             </li>
           ))}

@@ -43,6 +43,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* El header es fijo: las anclas (#contacto, #servicios…) se detienen por debajo de él */
+[id] {
+  scroll-margin-top: 120px;
+}
+
 body {
   margin: 0;
   font-family: var(--font-inter);

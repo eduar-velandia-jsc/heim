@@ -1,0 +1,66 @@
+/*
+ * Animación común de los botones: al pasar el cursor se elevan como si invitaran a pulsarlos
+ * y al hacer clic se hunden. Se importa después del CSS de los componentes para tener prioridad.
+ */
+.arrow-button,
+.hero__button,
+.header__cta,
+.quote-form__submit,
+.footer__social a {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.arrow-button:hover,
+.hero__button--primary:hover,
+.header__cta:hover,
+.quote-form__submit:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 10px 22px rgba(233, 143, 12, 0.38);
+  filter: brightness(1.06);
+}
+
+.hero__button--outline:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+}
+
+.arrow-button:active,
+.hero__button:active,
+.header__cta:active,
+.quote-form__submit:active {
+  transform: translateY(0) scale(0.96);
+  box-shadow: 0 3px 8px rgba(12, 35, 61, 0.2);
+}
+
+/* La flecha avanza un poco al pasar el cursor */
+.arrow-button img {
+  transition: transform 0.2s ease;
+}
+
+.arrow-button:hover img {
+  transform: translate(2px, -2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arrow-button,
+  .hero__button,
+  .header__cta,
+  .quote-form__submit,
+  .footer__social a,
+  .arrow-button img {
+    transition: none;
+  }
+
+  .arrow-button:hover,
+  .hero__button:hover,
+  .header__cta:hover,
+  .quote-form__submit:hover,
+  .arrow-button:hover img {
+    transform: none;
+  }
+}

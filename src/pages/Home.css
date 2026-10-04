@@ -131,44 +131,6 @@
   height: 24px;
 }
 
-/* Botón de WhatsApp anclado abajo a la derecha del hero */
-.hero__chat {
-  position: absolute;
-  top: 814px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: flex-end;
-  pointer-events: none;
-}
-
-.chat-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  width: 300px;
-  padding: 12px 32px;
-  border-radius: 42px;
-  background: var(--color-green);
-  font-family: var(--font-lato);
-  font-size: 20px;
-  line-height: normal;
-  color: var(--color-white);
-  white-space: nowrap;
-  pointer-events: auto;
-  transition: filter 0.2s ease;
-}
-
-.chat-button:hover {
-  filter: brightness(1.08);
-}
-
-.chat-button img {
-  width: 37px;
-  height: 32px;
-}
-
 /* ---------- Stats ---------- */
 .stats {
   position: relative;
@@ -580,6 +542,41 @@
   object-fit: contain;
 }
 
+/*
+ * Los logos se muestran en el azul de la marca (una capa del color navy recortada con la
+ * silueta del logo) y recuperan su color original al pasar el cursor.
+ */
+.clients__logo {
+  position: relative;
+  cursor: default;
+}
+
+.clients__logo img {
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.clients__logo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-navy);
+  -webkit-mask: var(--logo) center / contain no-repeat;
+  mask: var(--logo) center / contain no-repeat;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.clients__logo:hover img {
+  opacity: 1;
+  transform: scale(1.06);
+}
+
+.clients__logo:hover::after {
+  opacity: 0;
+  transform: scale(1.06);
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 1280px) {
   .about,
@@ -636,15 +633,9 @@
   }
 
   .hero__content {
-    padding: 180px 0 40px;
+    padding: 180px 0 120px;
   }
 
-  .hero__chat {
-    position: relative;
-    top: auto;
-    justify-content: flex-start;
-    padding-bottom: 100px;
-  }
 
   /* En el diseño el texto del hero arranca 24px antes que la retícula de 1220px */
 @media (min-width: 1300px) {

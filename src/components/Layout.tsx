@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
+import { WhatsAppButton } from "./WhatsAppButton";
 
 /** Desplaza al ancla (#contacto, #quienes-somos…) o al inicio al cambiar de ruta. */
 function useScrollToHash() {
@@ -26,6 +27,7 @@ export function Layout() {
         <Outlet />
       </main>
       <Footer />
+      <WhatsAppButton />
     </>
   );
 }
