@@ -87,7 +87,7 @@ export const ALL_PROJECTS: Project[] = [
     date: "17/ 04/2025",
     category: "Adecuación corporativa",
     name: "Baño Sylvania – Ampliación y Redes",
-    gallery: gallery("bano-sylvania", 10, true),
+    gallery: gallery("bano-sylvania", 7, true),
     imageHeight: 599,
     challengeTitle: "Desafío y solución técnica:",
     challenge:
