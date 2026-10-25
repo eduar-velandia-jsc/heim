@@ -29,7 +29,7 @@ const ZAJARI: Omit<Project, "imageHeight"> = {
   date: "01 / 07/2026",
   category: "Remodelación Residencial",
   name: "Proyecto Zajarí – Reconfiguración Arquitectura & Redes",
-  gallery: gallery("zajari", 12),
+  gallery: gallery("zajari", 13),
   challengeTitle: "Desafío y solución técnica",
   challenge:
     "Reingeniería operativa de redes hidrosanitarias y de gas para cambiar la orientación de la estufa y el lavaplatos, optimizando la circulación del área social.",
