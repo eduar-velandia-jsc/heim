@@ -20,20 +20,28 @@
 }
 
 .carousel__slide {
+  position: relative;
   flex: 0 0 100%;
   height: 100%;
+  overflow: hidden;
 }
 
+/* Fotos completas, sin recortar: el espacio sobrante se rellena con la misma foto difuminada */
 .carousel__slide img,
 .carousel__slide video {
+  position: relative;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
-/* El video es vertical: se muestra completo sobre el fondo azul de la marca */
-.carousel__slide--video video {
-  object-fit: contain;
+.carousel__backdrop {
+  position: absolute;
+  inset: -24px;
+  background-position: center;
+  background-size: cover;
+  filter: blur(22px) brightness(0.75);
+  transform: scale(1.08);
 }
 
 /* Flechas */

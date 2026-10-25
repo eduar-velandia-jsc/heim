@@ -149,7 +149,11 @@ export function ProjectCarousel({ slides, label, aspectRatio }: ProjectCarouselP
               />
             ) : (
               loaded.has(i) && (
-                <img src={slide.src} alt={`${label} – foto ${i + 1} de ${count}`} draggable={false} decoding="async" />
+                <>
+                  {/* La foto se ve completa; los bordes se rellenan con la misma foto difuminada */}
+                  <span className="carousel__backdrop" style={{ backgroundImage: `url("${slide.src}")` }} aria-hidden="true" />
+                  <img src={slide.src} alt={`${label} – foto ${i + 1} de ${count}`} draggable={false} decoding="async" />
+                </>
               )
             )}
           </div>
